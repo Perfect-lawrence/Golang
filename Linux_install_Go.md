@@ -34,15 +34,15 @@ go version go1.12.4 linux/amd64
 ```
 cd /home/lawrence/Go_Project/mysql/src
 
-vim first.go
+cat first.go
 
 package main
 
 import "fmt"
 
-func main(){
+func main() {
 
-fmt.Println("hello Golang")
+	fmt.Println("hello Golang")
 
 }
 
