@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"sort"
+	"strings"
 )
 
 func main() {
@@ -106,6 +107,43 @@ func main() {
 	mapSlice[0] = make(map[string]int, 8)
 	mapSlice[0]["你好吗"] = 100
 	fmt.Println(mapSlice)
-// 33分钟  https://www.apeland.cn/go/27/446
-}
 
+	//值为切片的map
+	var sliceMap = make(map[string][]int, 8) //只完成了map的初始化
+	v, ok := sliceMap["中国"]
+	if ok {
+		fmt.Println(v)
+	} else {
+		//sliceMap中没有中国这个键
+		sliceMap["中国"] = make([]int, 8) //完成对切片的初始化
+		sliceMap["中国"][0] = 100
+		sliceMap["中国"][1] = 200
+		sliceMap["中国"][3] = 300
+	}
+	// 遍历sliceMap
+	for k, v := range sliceMap {
+		fmt.Println(k, v)
+	}
+	// 小练习 ：统计一个字符串每个单词出现的次数
+	var ss = "how do you do"
+	var wordCount = make(map[string]int, 10)
+	// 1 字符串中有哪些单词 import strings
+	words := strings.Split(ss, " ")
+	// 2 遍历一个map[string]int
+	for _, word := range words {
+		v, ok := wordCount[word]
+		if ok {
+			// map 中有这个单词统计记录
+			wordCount[word] = v + 1
+
+		} else {
+			//map 中没有这个单词统计记录
+			wordCount[word] = 1
+		}
+
+	}
+	for k, v := range wordCount {
+
+		fmt.Println(k, v)
+	}
+}
