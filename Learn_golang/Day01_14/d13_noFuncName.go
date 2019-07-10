@@ -53,6 +53,24 @@ func calc3(base int) (func(int) int, func(int) int) {
 	return add, sub
 }
 
+// panic and recover
+
+func aa() {
+	fmt.Println("func aa")
+}
+func bbb() {
+	defer func() { // recover 必须配合 defer 一起用
+		err := recover()
+		if err != nil {
+			fmt.Println("func bbbbbb error")
+		}
+	}() // 一定要在panic 出现的前面定义defer
+	panic("panic in bbb ")
+}
+func cc() {
+	fmt.Println("func cc")
+}
+
 func main() {
 	//匿名函数
 	func() {
@@ -82,5 +100,10 @@ func main() {
 	fmt.Println(ret1)
 	ret2 := y(200) // base = 300 - 200
 	fmt.Println(ret2)
-}
 
+	// panic and recover
+
+	aa()
+	bbb()
+	cc()
+}
