@@ -41,7 +41,7 @@ func modify2(y *int) {
 
 func nn() {
 	a := new(int)
-	*a
+	//*a
 	b := new(bool)
 	fmt.Printf("%T\n", a) // *int
 	fmt.Printf("%T\n", b) // *bool
